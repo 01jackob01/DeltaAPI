@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delta App</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="frontExtensions/css/bootstrap.min.css"/>
+    <script src="js/shared/sharedScripts.js" type="module"></script>
+    <script src="js/index.js" type="module"></script>
+    <script src="frontExtensions/js/vue.js"></script>
+    <script src="frontExtensions/js/jquery.min.js"></script>
+    <script src="frontExtensions/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div id="index">
+    <div id="loader" class="overlay">
+        <div class="loaderPosition">
+            <div class="loader"></div>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr class="table-info table-center">
+            <th id="test" scope="col" class="col-md-6">Dane z dnia: {{ currentDate }}</th>
+            <th scope="col" class="col-md-1">
+                <form>
+                    <input type="date" id="selectedDate" name="selectedDate" @change="changeDate()">
+                </form>
+            </th>
+            <th scope="col" class="col-md-1">Ostatnia aktualizacja: {{ actualTime }}</th>
+        </tr>
+        </thead>
+    </table>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-info table-center">
+                <th scope="col">Moc uzyskana</th>
+                <th scope="col">Moc wykorzystana</th>
+                <th scope="col">Moc z dodatkowej baterii</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr class="table-center">
+            <td class="col-md-1">{{ watsInSum }}</td>
+            <td class="col-md-1">{{ watsOutSum }}</td>
+            <td class="col-md-1">{{ watsFromExtraBattery }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <td class="col-md-1">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="table-info table-center">
+                            <th scope="col" colspan="3">Dane godzina po godzinie</th>
+                        </tr>
+                        <tr class="table-info table-center">
+                            <th scope="col">Godzina</th>
+                            <th scope="col">Moc uzyskana</th>
+                            <th scope="col">Moc wykorzystana</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-center" v-for="(innerData, key) in deltaDataHourByHour">
+                            <td> {{ key }}</td>
+                            <td> {{ innerData.input }}</td>
+                            <td> {{ innerData.output }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td class="col-md-1">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr class="table-info table-center">
+                        <th scope="col" colspan="3">Aktualne użycie</th>
+                    </tr>
+                    <tr class="table-info table-center">
+                        <th scope="col">Procent baterii</th>
+                        <th scope="col">Moc wchodząca {{ watsInType }}</th>
+                        <th scope="col">Moc wychodząca</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table-center">
+                        <td class="col-md-1">{{ batteryPercentActual }}</td>
+                        <td class="col-md-1">{{ watsInActual }}</td>
+                        <td class="col-md-1">{{ watsOutActual }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

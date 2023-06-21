@@ -1,0 +1,19 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Api\\": "api/",
+      "Src\\": "src/",
+      "Cron\\": "cron/",
+      "Model\\": "model/"
+    }
+  },
+  "require": {
+    "phpunit/phpunit": "9.5.21",
+    "phpunit/php-code-coverage": "9.2.13",
+    "vlucas/phpdotenv": "*",
+    "ext-xdebug": "*",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mysqli": "*"
+  }
+}
